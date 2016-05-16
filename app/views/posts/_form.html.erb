@@ -15,6 +15,12 @@
     <%= f.label :body %><br>
     <%= f.text_area :body %>
   </div>
+  <% if @post.image_file.present? %>
+    <div class='delete_image' >
+    X</div>
+       <%= image_tag(@post.image_file.thumb.url) %>
+  
+  <% end %>
   <div class="field">
     <%= f.label :image_file %><br>
     <%= f.file_field :image_file, accept: "image/*" %>
