@@ -1,0 +1,11 @@
+<h2> 'My Profile' </h2>
+<p> Username: <%= h @user.email %>
+<h2>Friends </h2>
+<ul>
+ <% for friendship in @user.friendships %>
+ 	<li>
+ 		<%= h friendship.friend.email %>
+ 		(<%= link_to "remove", friendship, :method => :delete %>)
+ 	</li>
+ <% end %>
+ <p><%= link_to "Find Friends", users_path %></p>

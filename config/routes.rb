@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
+  resources :friendships
   resources :posts do
     member do
       post 'publish'
+      post 'share'
     end
     collection do
       get 'home' => 'posts#home'
     end
   end
+
+  get 'users/current' => 'users#current'
+  get 'users' => 'users#index'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
