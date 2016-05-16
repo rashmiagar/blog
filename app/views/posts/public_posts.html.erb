@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Public Posts</h1>
+
+<table style="width:200px%">
+  <tbody>
+    <% @public_posts.each do |post| %>
+      <tr>
+        <td>
+        <div>
+        <%= post.body %>
+        </div>
+        <div><%= image_tag post.image_file.thumb.url %></div>
+        <%= post.user.email %>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br/>

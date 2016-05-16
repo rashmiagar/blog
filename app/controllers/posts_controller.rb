@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = current_user.posts.all
   end
 
   # GET /posts/1
@@ -22,10 +22,18 @@ class PostsController < ApplicationController
   def edit
   end
 
-  def publish 
+  def publish
     @post = Post.find(params[:id])
     @post.published = true
-    @post.save
+    if @post.save
+      @public_posts = Post.where('published = true').order(created_at: :desc).limit(10)
+      render :public_posts
+    end
+  end
+
+  def home
+     @public_posts = Post.where('published = true').order(created_at: :desc).limit(10)
+     render :public_posts
   end
 
   # POST /posts
