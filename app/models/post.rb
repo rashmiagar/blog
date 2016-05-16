@@ -1,3 +1,5 @@
 class Post < ActiveRecord::Base
-  belongs_to :user
+	attr_accessor :image_file
+
+ 	belongs_to :user
 end
