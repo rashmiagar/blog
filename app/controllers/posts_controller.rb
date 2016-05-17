@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:home]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :publish, :share]
 
   # GET /posts
   # GET /posts.json
@@ -23,12 +23,17 @@ class PostsController < ApplicationController
   end
 
   def publish
-    @post = Post.find(params[:id])
     @post.published = true
     if @post.save
       @public_posts = Post.where('published = true').order(created_at: :desc).limit(10)
       render :public_posts
     end
+  end
+
+  def share
+    @friends = current_user.friends
+    UserMailer.share_post(@friends, @post).deliver_now!
+    redirect_to action: :index
   end
 
   def home

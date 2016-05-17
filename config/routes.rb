@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'posts#home'
   resources :friendships
   resources :posts do
     member do
@@ -6,13 +7,17 @@ Rails.application.routes.draw do
       post 'share'
     end
     collection do
-      get 'home' => 'posts#home'
+      get 'home' => 'posts#home', as: :home
     end
   end
 
-  get 'users/current' => 'users#current'
+  get 'users/current' => 'users#current', as: :profile
   get 'users' => 'users#index'
-  devise_for :users
+  devise_for :users, path: '', 
+          path_names: { sign_in: 'login', sign_up: 'register'}
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

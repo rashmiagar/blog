@@ -46,7 +46,13 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">Blog</a>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "navbar-brand" %>        
+        <% if user_signed_in? %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "navbar-brand" %>  
+        <%= link_to 'My Profile', profile_path, class: 'navbar-brand' %>      
+        <div style="float:right;margin-top:20px">Welcome <%= current_user.email %> </div>
+        <% else %>
+        <%= link_to 'Login', new_user_session_path, class: "navbar-brand" %>
+        <% end %>
       </div>
     </div>
 
