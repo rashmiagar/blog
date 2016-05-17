@@ -25,9 +25,9 @@
 
   <div class="delete_image">
     X 
-    <%= image_tag @post.image_file.thumb.url %>
   </div>
-  <%= f.hidden_field :remove_image, value: !f.object.image_file %>
+   <%= image_tag @post.image_file.thumb.url %>
+  <%= hidden_field :_destroy, value: !f.object.image_file %>
   
   <div class="form-group">
     <%= f.label :image_file, :class => 'control-label col-lg-2' %>

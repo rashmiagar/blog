@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:home]
+  before_action :authenticate_user!, except: [:public_posts]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :publish, :share]
 
   def index
@@ -14,6 +14,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def publish
@@ -75,6 +76,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:body, :image_file, :published)
+      params.require(:post).permit(:body, :image_file, :remove_image, :published)
     end
 end

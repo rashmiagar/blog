@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  root 'posts#home'
+  
+  root 'posts#public_posts'
+  
   resources :friendships
+  
+
   resources :posts do
     member do
       post 'publish'
@@ -13,6 +17,8 @@ Rails.application.routes.draw do
 
   get 'users/current' => 'users#current', as: :profile
   get 'users' => 'users#index'
+  
+
   devise_for :users, path: '', 
           path_names: { sign_in: 'login', sign_up: 'register'}
 

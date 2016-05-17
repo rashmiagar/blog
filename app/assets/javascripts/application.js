@@ -15,4 +15,5 @@
 //= require twitter/bootstrap
 //= require custom
 //= require turbolinks
+//= require_self
 //= require_tree .

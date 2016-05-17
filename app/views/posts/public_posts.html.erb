@@ -2,27 +2,18 @@
 
 <h1>Public Posts</h1>
 <% @public_posts.each do |post| %>
-<article>
+<div class="panel panel-success">
+ <div class="panel-heading"><%= post.created_at.strftime("%B %d %Y")%></div>
+<div class="panel-body">
 <%= image_tag post.image_file.thumb.url, class: "img", style: "float:left;margin-right:10px"%>
 <p>
 <%= post.body %>
 </p>
-</article>
+</div>
+ <div class="panel-footer clearfix">
+   <span class="glyphicon glyphicon-user">
+   by <%= post.user.email %>
+ </div>
+</div>
 <%end %>
 <br/>
-<!-- 
-<table style="width:200px%">
-  <tbody>
-    <% @public_posts.each do |post| %>
-      <tr>
-        <td>
-        <div>
-        <%= post.body %>
-        </div>
-        <div><%= image_tag post.image_file.thumb.url %></div>
-        <%= post.user.email %>
-      </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table> -->
