@@ -1,4 +1,4 @@
-This is a Rails 4 app using bootstrap, devise, paperclip. functionalities are following below:
+This is a Rails 4 app using bootstrap, devise, carrierwave. functionalities are following below:
   1. Use bootstrap for styling
   2. Use devise for registration and authentication.
   3. Users can create the blogs.

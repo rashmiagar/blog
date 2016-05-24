@@ -1,7 +1,5 @@
 <%- model_class = Post -%>
-<%#= Post.find(id).inspect %>
 <% @post ||= post %>
-<%#= debug @post %>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>

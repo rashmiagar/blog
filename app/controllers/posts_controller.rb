@@ -31,7 +31,8 @@ class PostsController < ApplicationController
   end
 
   def public_posts
-     @public_posts = Post.where('published = true').order(created_at: :desc).limit(10)
+     @public_posts = Post.includes(:user).where('published = true').order(created_at: :desc).limit(10)
+
      render :public_posts
   end
 
@@ -70,7 +71,6 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
     end
