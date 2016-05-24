@@ -1,4 +1,6 @@
-<%= form_for @post, :html => { :class => "form-horizontal post" } do |f| %>
+<% @post ||= post%>
+<%= debug @post.new_record? ? :post : :patch %>
+<%= form_for @post, :html => { :class => "form-horizontal", :method => @post.new_record? ? :post : :patch } do |f| %>
 
   <% if @post.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -23,12 +25,14 @@
     <%=f.error_span(:body) %>
   </div>
 
+  <% unless @post.new_record? %>
   <div class="delete_image">
     X 
   </div>
    <%= image_tag @post.image_file.thumb.url %>
   <%= hidden_field :_destroy, value: !f.object.image_file %>
-  
+  <% end %>
+
   <div class="form-group">
     <%= f.label :image_file, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -37,13 +41,15 @@
     <%=f.error_span(:image_file) %>
   </div>
 
+  <% unless @post.new_record? %>
   <div class="form-group">
     <%= f.label :published, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :published, :class => 'form-control' %>
+      <%= f.check_box :published, :class => 'input-group' %>
     </div>
     <%=f.error_span(:published) %>
   </div>
+  <% end %>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
